@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import MoveCard from "../../components/MovieCard";
-import { getMovies, getMoviesByPage } from "../../service";
+import { getGenres, getMoviesByPage } from "../../service";
 
 export default function HomePage() {
   const [movies, setMovies] = useState("");
+  const [genres, setGenres] = useState("");
 
   useEffect(() => {
     getMoviesByPage(1).then((res) => {
@@ -11,7 +12,14 @@ export default function HomePage() {
     });
   }, []);
 
-  //   console.log(movies.results);
+  useEffect(() => {
+    getGenres().then(({genres}) => {
+     setGenres(genres);
+    });
+  }, []);
+
+    console.log(movies);
+    console.log(genres);
 
   return (
     <>
