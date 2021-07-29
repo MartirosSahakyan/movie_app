@@ -1,11 +1,20 @@
-import HomePage from './pages/HomePage/HomePage'
-import LoginPage from './pages/LoginPage/LoginPage' 
+import HomePage from "./pages/HomePage/HomePage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-export default function App (){
-  return(
+export default function App() {
+  return (
     <>
-      <LoginPage />
-      <HomePage />
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <LoginPage  />
+          </Route>
+          <Route path='/home'>
+            <HomePage  />
+          </Route>
+        </Switch>
+      </Router>
     </>
-  )
+  );
 }
