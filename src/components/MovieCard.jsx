@@ -7,17 +7,18 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { getImgUrl } from "../service";
+import { getImgUrl } from "../services";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 245,
+    marginBottom: 30
   },
 });
 
 export default function MoveCard({ title, imgPath, description }) {
   const classes = useStyles();
-  
+
   return (
     <Card className={classes.root}>
       <CardActionArea>

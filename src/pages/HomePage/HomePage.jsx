@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MoveCard from "../../components/MovieCard";
-import { getGenres, getMoviesByPage } from "../../service";
+import { getGenres, getMoviesByPage } from "../../services";
+import styles from './HomePage.module.css'
 
 export default function HomePage() {
   const [movies, setMovies] = useState("");
@@ -13,28 +14,30 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    getGenres().then(({genres}) => {
-     setGenres(genres);
+    getGenres().then(({ genres }) => {
+      setGenres(genres);
     });
   }, []);
 
-    console.log(movies);
-    console.log(genres);
+  console.log(movies);
+  console.log(genres);
 
   return (
     <>
       <h1>HOME PAGES</h1>
-      {movies &&
-        movies.results.map((movie) => {
-          return (
-            <MoveCard
-              key={movie.id}
-              title={movie.title}
-              description={movie.overview}
-              imgPath={movie.poster_path}
-            />
-          );
-        })}
+      <section className={styles.container}>
+        {movies &&
+          movies.results.map((movie) => {
+            return (
+              <MoveCard
+                key={movie.id}
+                title={movie.title}
+                description={movie.overview}
+                imgPath={movie.poster_path}
+              />
+            );
+          })}
+      </section>
     </>
   );
 }
