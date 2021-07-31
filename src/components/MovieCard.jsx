@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 
 export default function MoveCard({ title, imgPath, genres, id }) {
   const classes = useStyles();
-  console.log(genres);
+  // console.log(genres);
   return (
     <Card className={classes.root}>
       <Link to={`/home/${id}`}>
@@ -36,9 +36,9 @@ export default function MoveCard({ title, imgPath, genres, id }) {
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {
-              genres.map((genre)=>{
+              genres.map((genre, index)=>{
                 return(
-                    <span>{genre}</span>
+                    <span key={index}>{genre}</span>
                 )
               })
               }
