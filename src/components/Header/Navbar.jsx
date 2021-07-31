@@ -65,6 +65,13 @@ const useStyles = makeStyles((theme) => ({
     margin: "10px",
     backgroundColor: "#0049A2",
   },
+  favButton: {
+    color: "white",
+    backgroundColor: "orange",
+    "&:hover": {
+      backgroundColor: "darkorange",
+    },
+  },
 }));
 
 export default function Navbar({ handleSearchInput }) {
@@ -74,15 +81,10 @@ export default function Navbar({ handleSearchInput }) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          ></IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             Books Are Better
           </Typography>
+
           <div className={classes.search}>
             <div className={classes.searchIcon}></div>
             <InputBase
@@ -95,6 +97,8 @@ export default function Navbar({ handleSearchInput }) {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
+          <Button className={classes.favButton}>Favorite</Button>
+
           <Button className={classes.logout}>Log Out</Button>
         </Toolbar>
       </AppBar>
