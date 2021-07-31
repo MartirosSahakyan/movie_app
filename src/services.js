@@ -23,3 +23,9 @@ export function getGenres() {
 export function getImgUrl(path) {
   return `${IMG_URL}${path}`;
 }
+
+export function getMoviesByQuery(query) {
+  return fetch(
+    `${API_URL}search/movie?api_key=${API_KEY}&query=${query}`
+  ).then((res) => res.json());
+}

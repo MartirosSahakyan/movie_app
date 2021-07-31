@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import MoveCard from "../../components/MovieCard";
-import { getGenres, getMoviesByPage } from "../../services";
+import { getGenres, getMoviesByPage, getMoviesByQuery } from "../../services";
 import styles from "./HomePage.module.css";
 import {
   BrowserRouter as Router,
@@ -26,6 +26,14 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
+    if (searchQuery) {
+      getMoviesByQuery(searchQuery).then((res) => {
+        setMovies(res);
+      });
+    }      
+  }, [searchQuery]);
+  
+  useEffect(() => {
     getGenres().then(({ genres }) => {
       setGenres(genres);
     });
@@ -33,7 +41,7 @@ export default function HomePage() {
 
   // console.log(movies);
   // console.log(genres);
-  console.log(searchQuery);
+  // console.log(searchQuery);
 
   return (
     <>
