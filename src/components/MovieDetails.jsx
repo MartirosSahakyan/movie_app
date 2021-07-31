@@ -4,12 +4,22 @@ import { getMovieById } from "../services";
 
 export default function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState("");
+  const [loading, setLoading] = useState(true);
+
   let { id } = useParams();
 
   useEffect(() => {
-    getMovieById(id).then((res) => setMovieDetails(res));
+    // setLoading(true)
+    getMovieById(id).then((res) => {
+      setMovieDetails(res);
+      setLoading(false);
+    });
   }, []);
-  
-  console.log(movieDetails);
-  return <h1>Details ID::: {movieDetails.title}</h1>;
+
+//   console.log(movieDetails);
+  return (
+    <div>
+      {loading ? <p>Loading</p> : <h1>Details ID::: {movieDetails.title}</h1>}
+    </div>
+  );
 }

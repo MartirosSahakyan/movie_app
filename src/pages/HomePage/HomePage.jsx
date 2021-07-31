@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import MoveCard from "../../components/MovieCard";
 import { getGenres, getMoviesByPage, getMoviesByQuery } from "../../services";
 import styles from "./HomePage.module.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MovieDetails from "../../components/MovieDetails";
 import Header from "../../components/Header/Header";
 import { findGenreName } from "../../helper/Helper";
@@ -14,25 +10,36 @@ import { findGenreName } from "../../helper/Helper";
 export default function HomePage() {
   const [movies, setMovies] = useState("");
   const [genres, setGenres] = useState("");
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const handleSearchInput = (e) =>{
-    setSearchQuery(e.target.value)
-  }
+  const handleSearchInput = (e) => {
+    setSearchQuery(e.target.value);
+  };
   useEffect(() => {
+    setLoading(true);
     getMoviesByPage(1).then((res) => {
       setMovies(res);
+      setLoading(false);
     });
   }, []);
 
   useEffect(() => {
     if (searchQuery) {
+      setLoading(true);
       getMoviesByQuery(searchQuery).then((res) => {
         setMovies(res);
+        setLoading(false);
       });
-    }      
+    }else{
+      setLoading(true);
+      getMoviesByPage(1).then((res) => {
+        setMovies(res);
+        setLoading(false);
+      });
+    }
   }, [searchQuery]);
-  
+
   useEffect(() => {
     getGenres().then(({ genres }) => {
       setGenres(genres);
@@ -51,21 +58,23 @@ export default function HomePage() {
         <Switch>
           <Route exact path="/home">
             <section className={styles.container}>
-              {movies &&
+              {loading ? (
+                <p>Loading</p>
+              ) : (
                 movies.results.map((movie) => {
                   return (
-                    
                     <MoveCard
                       key={movie.id}
                       id={movie.id}
                       title={movie.title}
-                      genres = { genres ? findGenreName(genres, movie.genre_ids) : []}
-                      // description={movie.overview}
+                      genres={
+                        genres ? findGenreName(genres, movie.genre_ids) : []
+                      }
                       imgPath={movie.poster_path}
                     />
-                    
                   );
-                })}
+                })
+              )}
             </section>
           </Route>
           <Route path="/home/:id" children={<MovieDetails />}></Route>
