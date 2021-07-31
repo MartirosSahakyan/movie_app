@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -16,12 +16,37 @@ const useStyles = makeStyles({
   },
 });
 
+let favorites = [];
+
 export default function MoveCard({ title, imgPath, genres, id }) {
   const classes = useStyles();
-  const [isFavorite, setIsFavorite] = useState(false);
+  favorites = localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites"))
+    : [];
+  let isfav = favorites.some((movie) => movie.id === id);
+  const [isFavorite, setIsFavorite] = useState(isfav);
+
   const handleFavIconToggle = () => {
-    setIsFavorite((prevState) => !prevState);
+    setIsFavorite(!isFavorite);
+    const movieInfo = {
+      title,
+      imgPath,
+      genres,
+      id,
+      isFavorite: !isFavorite,
+    };
+
+    if (isFavorite) {
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify(favorites.filter((movie) => movie.id !== id))
+      );
+    } else {
+      favorites.push(movieInfo);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
   };
+
   return (
     <Card className={classes.root}>
       <Link to={`/home/${id}`}>
