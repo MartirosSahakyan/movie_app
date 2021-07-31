@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import MovieDetails from "../../components/MovieDetails";
 import Header from "../../components/Header/Header";
+import { findGenreName } from "../../helper/Helper";
 
 export default function HomePage() {
   const [movies, setMovies] = useState("");
@@ -47,7 +48,8 @@ export default function HomePage() {
                       key={movie.id}
                       id={movie.id}
                       title={movie.title}
-                      description={movie.overview}
+                      genres = { genres ? findGenreName(genres, movie.genre_ids) : []}
+                      // description={movie.overview}
                       imgPath={movie.poster_path}
                     />
                     
