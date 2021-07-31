@@ -6,8 +6,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  // Link,
-  // useParams,
 } from "react-router-dom";
 import MovieDetails from "../../components/MovieDetails";
 import Header from "../../components/Header/Header";
