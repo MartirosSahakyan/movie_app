@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MovieDetails from "../../components/Movies/MovieDetails";
 import Header from "../../components/Header/Header";
 import Movies from "../../components/Movies/Movies";
+import { FavoritePage } from "../FavoritePage/FavoritePage";
 
 export default function HomePage() {
   const [movies, setMovies] = useState("");
@@ -56,6 +57,9 @@ export default function HomePage() {
         <Switch>
           <Route exact path="/home">
             <Movies movies={movies} loading={loading} />
+          </Route>
+          <Route path='/home/favorites'>
+            <FavoritePage />
           </Route>
           <Route path="/home/:id" children={<MovieDetails />}></Route>
         </Switch>
