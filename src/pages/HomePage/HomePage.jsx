@@ -14,7 +14,11 @@ import { findGenreName } from "../../helper/Helper";
 export default function HomePage() {
   const [movies, setMovies] = useState("");
   const [genres, setGenres] = useState("");
+  const [searchQuery, setSearchQuery] = useState("")
 
+  const handleSearchInput = (e) =>{
+    setSearchQuery(e.target.value)
+  }
   useEffect(() => {
     getMoviesByPage(1).then((res) => {
       setMovies(res);
@@ -29,11 +33,12 @@ export default function HomePage() {
 
   // console.log(movies);
   // console.log(genres);
+  console.log(searchQuery);
 
   return (
     <>
       <Router>
-        <Header />
+        <Header handleSearchInput={handleSearchInput} />
 
         <Switch>
           <Route exact path="/home">

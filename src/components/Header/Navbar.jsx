@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar() {
+export default function Navbar({ handleSearchInput }) {
   const classes = useStyles();
 
   return (
@@ -86,6 +86,7 @@ export default function Navbar() {
           <div className={classes.search}>
             <div className={classes.searchIcon}></div>
             <InputBase
+              onChange={handleSearchInput}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
