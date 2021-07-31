@@ -8,7 +8,10 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { getImgUrl } from "../services";
+import {
 
+  Link,
+} from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     maxWidth: 245,
@@ -16,11 +19,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MoveCard({ title, imgPath, description }) {
+export default function MoveCard({ title, imgPath, description, id }) {
   const classes = useStyles();
-
   return (
     <Card className={classes.root}>
+      <Link to={`/home/${id}`}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -38,6 +41,7 @@ export default function MoveCard({ title, imgPath, description }) {
           </Typography>
         </CardContent>
       </CardActionArea>
+      </Link>
       <CardActions>
         <Button size="small" color="primary">
           Share
