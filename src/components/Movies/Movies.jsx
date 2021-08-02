@@ -3,6 +3,7 @@ import MoveCard from "./MovieCard";
 import { findGenreName } from "../../helper/Helper";
 import { getGenres } from "../../services";
 import styles from "./Movies.module.css";
+import Loader from "../Loader/Loader";
 
 export default function Movies({ movies, loading }) {
   const [genres, setGenres] = useState("");
@@ -16,7 +17,7 @@ export default function Movies({ movies, loading }) {
   return (
     <section className={styles.container}>
       {loading ? (
-        <p>Loading</p>
+        <Loader />
       ) : !movies.total_pages ? (
         <h3>No Such Film</h3>
       ) : (

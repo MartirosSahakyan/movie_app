@@ -6,12 +6,22 @@ import Header from "../../components/Header/Header";
 import Movies from "../../components/Movies/Movies";
 import { FavoritePage } from "../FavoritePage/FavoritePage";
 
+
 export default function HomePage() {
   const [movies, setMovies] = useState("");
-
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  
   // const [error, setError] = useState(false);
+
+  
+  // const [scroll, setScroll] = useState(1);
+  // window.addEventListener("scroll", (e) => {
+  //   if (e.path[1].pageYOffset / 3320 === 1) {
+  //     setScroll((prevState) => prevState + 1);
+  //     console.log(scroll);
+  //   }
+  // });
 
   const handleSearchInput = (e) => {
     setSearchQuery(e.target.value);
@@ -31,7 +41,7 @@ export default function HomePage() {
         .then((res) => {
           // setError(false)
           setMovies(res);
-          console.log(res);
+          // console.log(res);
           setLoading(false);
         })
         .catch((e) => {
@@ -58,7 +68,7 @@ export default function HomePage() {
           <Route exact path="/home">
             <Movies movies={movies} loading={loading} />
           </Route>
-          <Route path='/home/favorites'>
+          <Route path="/home/favorites">
             <FavoritePage />
           </Route>
           <Route path="/home/:id" children={<MovieDetails />}></Route>

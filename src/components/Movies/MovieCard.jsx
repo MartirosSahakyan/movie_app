@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -46,6 +46,7 @@ export default function MoveCard({ title, imgPath, genres, id }) {
       localStorage.setItem("favorites", JSON.stringify(favorites));
     }
   };
+  
 
   return (
     <Card className={classes.root}>
