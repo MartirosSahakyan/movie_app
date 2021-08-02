@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieById } from "../../services";
+import Loader from "../Loader/Loader";
 
 export default function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState("");
@@ -19,7 +20,7 @@ export default function MovieDetails() {
 //   console.log(movieDetails);
   return (
     <div>
-      {loading ? <p>Loading</p> : <h1>Details ID::: {movieDetails.title}</h1>}
+      {loading ? <Loader /> : <h1>Details ID::: {movieDetails.title}</h1>}
     </div>
   );
 }
