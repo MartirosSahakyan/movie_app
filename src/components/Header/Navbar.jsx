@@ -101,8 +101,9 @@ export default function Navbar({ handleSearchInput }) {
           <Link to="/home/favorites">
             <Button className={classes.favButton}>Favorite</Button>
           </Link>
-
-          <Button className={classes.logout}>Log Out</Button>
+          <Link to="/">
+            <Button className={classes.logout}>Log Out</Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

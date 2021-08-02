@@ -5,16 +5,15 @@ import MovieDetails from "../../components/Movies/MovieDetails";
 import Header from "../../components/Header/Header";
 import Movies from "../../components/Movies/Movies";
 import { FavoritePage } from "../FavoritePage/FavoritePage";
-
+import LoginPage from "../LoginPage/LoginPage";
 
 export default function HomePage() {
   const [movies, setMovies] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
-  
+
   // const [error, setError] = useState(false);
 
-  
   // const [scroll, setScroll] = useState(1);
   // window.addEventListener("scroll", (e) => {
   //   if (e.path[1].pageYOffset / 3320 === 1) {
@@ -65,6 +64,9 @@ export default function HomePage() {
       <Router>
         <Header handleSearchInput={handleSearchInput} />
         <Switch>
+          <Route exact path="/">
+            <LoginPage />
+          </Route>
           <Route exact path="/home">
             <Movies movies={movies} loading={loading} />
           </Route>
