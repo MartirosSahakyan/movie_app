@@ -6,9 +6,13 @@ export function FavoritePage() {
   const movies = localStorage.getItem("favorites")
     ? JSON.parse(localStorage.getItem("favorites"))
     : "";
+  // fake render favorite page for dinamik delete cards from favorite pagei
+  const [fakeState, setFakeState] = useState(1);
+  const fakeRender = () => {
+    setFakeState(fakeState + 1);
+  };
 
-  //   const [movies, setMovie] = useState(initialState);
-  console.log("favorite page render");
+
   return (
     <section className={styles.container}>
       {!movies.length ? (
@@ -22,6 +26,7 @@ export function FavoritePage() {
               genres={movie.genres}
               id={movie.id}
               key={movie.id}
+              fakeRender={fakeRender}
             />
           );
         })

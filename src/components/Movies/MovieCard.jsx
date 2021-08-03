@@ -18,13 +18,15 @@ const useStyles = makeStyles({
 
 let favorites = [];
 
-export default function MoveCard({ title, imgPath, genres, id }) {
+export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
   const classes = useStyles();
+  const [isFavorite, setIsFavorite] = useState(isfav);
+
+  let isfav = favorites.some((movie) => movie.id === id);
+
   favorites = localStorage.getItem("favorites")
     ? JSON.parse(localStorage.getItem("favorites"))
     : [];
-  let isfav = favorites.some((movie) => movie.id === id);
-  const [isFavorite, setIsFavorite] = useState(isfav);
 
   const handleFavIconToggle = () => {
     setIsFavorite(!isFavorite);
@@ -46,7 +48,6 @@ export default function MoveCard({ title, imgPath, genres, id }) {
       localStorage.setItem("favorites", JSON.stringify(favorites));
     }
   };
-  
 
   return (
     <Card className={classes.root}>
@@ -73,7 +74,7 @@ export default function MoveCard({ title, imgPath, genres, id }) {
       </Link>
       <CardActions>
         <Button size="small" color="primary" onClick={handleFavIconToggle}>
-          {isFavorite ? "-" : "+"}
+          <span onClick={fakeRender}>{isFavorite ? "-" : "+"}</span>
         </Button>
       </CardActions>
     </Card>
