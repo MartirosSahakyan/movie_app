@@ -34,7 +34,6 @@ export default function HomePage() {
       window.scrollBy(-20, -20);
     }
   });
-  window.onscroll();
 
   useEffect(() => {
     if (searchQuery) {
