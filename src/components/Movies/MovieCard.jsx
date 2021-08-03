@@ -14,6 +14,9 @@ const useStyles = makeStyles({
     maxWidth: 245,
     marginBottom: 30,
   },
+  favBtn: {
+    padding: 0,
+  },
 });
 
 let favorites = [];
@@ -72,8 +75,15 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
         </CardActionArea>
       </Link>
       <CardActions>
-        <Button size="small" color="primary" onClick={handleFavIconToggle}>
-          <span style={{width: '100%', height:'100%'}} onClick={fakeRender}>{isFavorite ? "-" : "+"}</span>
+        <Button
+          className={classes.favBtn}
+          size="small"
+          color="primary"
+          onClick={handleFavIconToggle}
+        >
+          <span style={{ width: "100%", height: "100%" }} onClick={fakeRender}>
+            {isFavorite ? "-" : "+"}
+          </span>
         </Button>
       </CardActions>
     </Card>
