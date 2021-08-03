@@ -18,10 +18,10 @@ export default function Movies({ movies, loading }) {
     <section className={styles.container}>
       {loading ? (
         <Loader />
-      ) : !movies.total_pages ? (
-        <h3>No Such Film</h3>
+      ) : !movies ? (
+        <h3>No Such Fim</h3>
       ) : (
-        movies.results.map((movie) => {
+        movies.map((movie) => {
           return (
             <MoveCard
               key={movie.id}

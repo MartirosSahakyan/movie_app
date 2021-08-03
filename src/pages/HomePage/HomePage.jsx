@@ -8,56 +8,53 @@ import { FavoritePage } from "../FavoritePage/FavoritePage";
 import LoginPage from "../LoginPage/LoginPage";
 
 export default function HomePage() {
-  const [movies, setMovies] = useState("");
+  const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
-
-  // const [error, setError] = useState(false);
-
-  // const [scroll, setScroll] = useState(1);
-  // window.addEventListener("scroll", (e) => {
-  //   if (e.path[1].pageYOffset / 3320 === 1) {
-  //     setScroll((prevState) => prevState + 1);
-  //     console.log(scroll);
-  //   }
-  // });
+  const [currPage, setCurrPage] = useState(1);
 
   const handleSearchInput = (e) => {
     setSearchQuery(e.target.value);
   };
+
   useEffect(() => {
-    setLoading(true);
-    getMoviesByPage(1).then((res) => {
-      setMovies(res);
+    getMoviesByPage(currPage).then(({ results }) => {
+      setMovies([...movies, ...results]);
       setLoading(false);
     });
-  }, []);
+  }, [currPage]);
+
+  window.addEventListener("scroll", function (e) {
+    if (
+      Math.ceil(window.scrollY) + 50 >=
+      document.documentElement.scrollHeight -
+        document.documentElement.clientHeight
+    ) {
+      setCurrPage((prevCurrPage) => prevCurrPage + 1);
+      window.scrollBy(-20, -20);
+    }
+  });
+  window.onscroll();
 
   useEffect(() => {
     if (searchQuery) {
       setLoading(true);
       getMoviesByQuery(searchQuery)
-        .then((res) => {
-          // setError(false)
-          setMovies(res);
-          // console.log(res);
+        .then(({ results }) => {
+          setMovies(results);
           setLoading(false);
         })
         .catch((e) => {
           setLoading(false);
-          // setError(true)
         });
     } else {
       setLoading(true);
-      getMoviesByPage(1).then((res) => {
-        setMovies(res);
+      getMoviesByPage(1).then(({ results }) => {
+        setMovies(results);
         setLoading(false);
       });
     }
   }, [searchQuery]);
-
-  // console.log(movies);
-  // console.log(searchQuery);
 
   return (
     <>
