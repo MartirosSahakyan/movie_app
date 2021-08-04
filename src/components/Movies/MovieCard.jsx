@@ -53,7 +53,7 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
 
   return (
     <Card className={classes.root}>
-      <Link to={`/home/${id}`}>
+      <Link to={`/home/movies/${id}`}>
         <CardActionArea>
           <CardMedia
             component="img"

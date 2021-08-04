@@ -83,7 +83,7 @@ export default function Navbar({ handleSearchInput }) {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="/home">Books Are Better</Link>
+            <Link to="/home/movies">Books Are Better</Link>
           </Typography>
 
           <div className={classes.search}>

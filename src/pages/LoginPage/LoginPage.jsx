@@ -9,7 +9,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-// import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
@@ -57,7 +56,8 @@ export default function LoginPage() {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log("signIn data", JSON.stringify(values, null, 2));
-      history.push("/home");
+      history.push("/home/movies");
+      localStorage.setItem("isAuth", true);
     },
   });
 
@@ -73,7 +73,7 @@ export default function LoginPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
+            // required
             fullWidth
             id="email"
             label="Email Address"
@@ -88,7 +88,7 @@ export default function LoginPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
+            // required
             fullWidth
             name="password"
             label="Password"

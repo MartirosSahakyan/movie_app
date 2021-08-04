@@ -1,7 +1,7 @@
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+let isAuth = localStorage.getItem('isAuth')
 export default function App() {
   return (
     <>
