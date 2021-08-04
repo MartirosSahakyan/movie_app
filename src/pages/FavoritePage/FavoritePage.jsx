@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MoveCard from "../../components/Movies/MovieCard";
+import MoveCard from "../../components/MovieCard/MovieCard";
 import { storage } from "../../constants/storage";
 import { getLocalStorage } from "../../helper/localStorage";
 import styles from "./FavoritePage.module.css";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MoveCard from "./MovieCard";
+import MoveCard from "../MovieCard/MovieCard";
 import { findGenreName } from "../../helper/findGenreName";
 import { getGenres } from "../../service/services";
 import styles from "./Movies.module.css";

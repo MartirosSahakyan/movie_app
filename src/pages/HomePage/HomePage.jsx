@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMoviesByPage, getMoviesByQuery } from "../../service/services";
 import { Switch, Route } from "react-router-dom";
-import MovieDetails from "../../components/Movies/MovieDetails";
+import MovieDetails from "../../pages/MovieDetails/MovieDetails";
 import Header from "../../components/Header/Header";
 import Movies from "../../components/Movies/Movies";
 import { FavoritePage } from "../FavoritePage/FavoritePage";
