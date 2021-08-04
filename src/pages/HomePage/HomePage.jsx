@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMoviesByPage, getMoviesByQuery } from "../../services";
+import { getMoviesByPage, getMoviesByQuery } from "../../service/services";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MovieDetails from "../../components/Movies/MovieDetails";
 import Header from "../../components/Header/Header";

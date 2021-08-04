@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { getImgUrl } from "../../services";
+import { getImgUrl } from "../../service/services";
 import { Link } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
@@ -28,9 +28,7 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
   let isfav = favorites.some((movie) => movie.id === id);
   const [isFavorite, setIsFavorite] = useState(isfav);
 
-  favorites = getLocalStorage(storage.fav)
-    ? getLocalStorage(storage.fav)
-    : [];
+  favorites = getLocalStorage(storage.fav) ? getLocalStorage(storage.fav) : [];
 
   const handleFavIconToggle = () => {
     setIsFavorite(!isFavorite);
@@ -43,10 +41,13 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
     };
 
     if (isFavorite) {
-      setLocalStorage(storage.fav, favorites.filter((movie) => movie.id !== id))
+      setLocalStorage(
+        storage.fav,
+        favorites.filter((movie) => movie.id !== id)
+      );
     } else {
       favorites.push(movieInfo);
-      setLocalStorage(storage.fav, favorites)
+      setLocalStorage(storage.fav, favorites);
     }
   };
 

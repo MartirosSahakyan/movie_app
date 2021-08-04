@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MoveCard from "./MovieCard";
 import { findGenreName } from "../../helper/findGenreName";
-import { getGenres } from "../../services";
+import { getGenres } from "../../service/services";
 import styles from "./Movies.module.css";
 import Loader from "../Loader/Loader";
 
