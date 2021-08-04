@@ -12,11 +12,11 @@ You must log in to use this application
 - Add and remove favorite movies
  
 ### Used Libraries
-[Material UI](https://material-ui.com/)
-[Formik](https://formik.org/docs/examples/with-material-ui)
-[Yup](https://www.npmjs.com/package/yup)
-[Axios](https://www.npmjs.com/package/axios)  
-[Prop-types](https://www.npmjs.com/package/prop-types)  
+[Material UI](https://material-ui.com/)    
+[Formik](https://formik.org/docs/examples/with-material-ui)   
+[Yup](https://www.npmjs.com/package/yup)   
+[Axios](https://www.npmjs.com/package/axios)     
+[Prop-types](https://www.npmjs.com/package/prop-types)      
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
