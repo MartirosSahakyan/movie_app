@@ -104,7 +104,11 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
           onClick={handleFavIconToggle}
         >
           <span style={{ width: "100%", height: "100%" }} onClick={fakeRender}>
-            {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {isFavorite ? (
+              <FavoriteIcon style={{ color: "orange" }} />
+            ) : (
+              <FavoriteBorderIcon />
+            )}
           </span>
         </Button>
       </CardActions>
