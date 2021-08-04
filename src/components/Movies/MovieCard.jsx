@@ -70,7 +70,7 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography style={{textAlign: 'center'}} gutterBottom variant="h6" component="h2" color='textPrimary'>
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">

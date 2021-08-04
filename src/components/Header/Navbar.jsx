@@ -3,6 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
+import HomeIcon from "@material-ui/icons/Home";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
-    },
+    },  
   },
   search: {
     position: "relative",
@@ -72,6 +73,13 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "darkorange",
     },
   },
+  homeIcon: {
+    transition: "0.4s",
+    color: 'white',
+    "&:hover": {
+      color: "#FFA500",
+    },
+  },
 }));
 
 export default function Navbar({ handleSearchInput }) {
@@ -82,7 +90,9 @@ export default function Navbar({ handleSearchInput }) {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="/home/movies">Books Are Better</Link>
+            <Link to="/home/movies">
+              <HomeIcon className={classes.homeIcon} fontSize="large" />
+            </Link>
           </Typography>
 
           <div className={classes.search}>
