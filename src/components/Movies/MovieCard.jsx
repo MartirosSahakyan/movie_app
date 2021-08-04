@@ -70,7 +70,13 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography style={{textAlign: 'center'}} gutterBottom variant="h6" component="h2" color='textPrimary'>
+            <Typography
+              style={{ textAlign: "center" }}
+              gutterBottom
+              variant="h6"
+              component="h2"
+              color="textPrimary"
+            >
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
@@ -98,7 +104,7 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
           onClick={handleFavIconToggle}
         >
           <span style={{ width: "100%", height: "100%" }} onClick={fakeRender}>
-            {isFavorite ? <FavoriteBorderIcon /> : <FavoriteIcon />}
+            {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </span>
         </Button>
       </CardActions>
