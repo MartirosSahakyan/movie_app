@@ -7,6 +7,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
-    },  
+    },
   },
   search: {
     position: "relative",
@@ -50,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
   homeIcon: {
     transition: "0.4s",
-    color: 'white',
+    color: "white",
     "&:hover": {
       color: "#FFA500",
     },
@@ -118,3 +118,7 @@ export default function Navbar({ handleSearchInput }) {
     </div>
   );
 }
+
+Navbar.propTypes = {
+  handleSearchInput: PropTypes.func.isRequired,
+};

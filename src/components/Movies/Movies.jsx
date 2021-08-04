@@ -4,6 +4,7 @@ import { findGenreName } from "../../helper/findGenreName";
 import { getGenres } from "../../service/services";
 import styles from "./Movies.module.css";
 import Loader from "../Loader/Loader";
+import PropTypes from 'prop-types'
 
 export default function Movies({ movies, loading, setCurrPage }) {
   const [genres, setGenres] = useState("");
@@ -51,4 +52,10 @@ export default function Movies({ movies, loading, setCurrPage }) {
       )}
     </section>
   );
+}
+
+Movies.propTypes ={
+  movies: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  setCurrPage: PropTypes.func.isRequired
 }

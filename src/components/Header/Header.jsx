@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,6 +7,7 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 import Navbar from "./Navbar";
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,4 +83,8 @@ export default function Header(props) {
       </ScrollTop>
     </React.Fragment>
   );
+}
+
+Header.propTypes ={
+  handleSearchInput: PropTypes.func.isRequired
 }

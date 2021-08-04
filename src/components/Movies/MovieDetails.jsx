@@ -15,7 +15,7 @@ export default function MovieDetails() {
       setLoading(false);
     });
   }, []);
-  console.log(movieDetails)
+  // console.log(movieDetails)
   return (
     <div>
       {loading ? <Loader /> : <h1>Details ID::: {movieDetails.title}</h1>}

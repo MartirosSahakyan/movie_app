@@ -14,6 +14,7 @@ import { getImgUrl } from "../../helper/imgFullUrl";
 import { Link } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   root: {
@@ -115,3 +116,11 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
     </Card>
   );
 }
+
+MoveCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  imgPath: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired,
+  fakeRender: PropTypes.func,
+};

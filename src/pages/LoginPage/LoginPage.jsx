@@ -57,7 +57,6 @@ export default function LoginPage() {
     onSubmit: (values) => {
       console.log("signIn data", JSON.stringify(values, null, 2));
       history.push("/home/movies");
-      // localStorage.setItem("isAuth", true);
     },
   });
 
@@ -73,7 +72,6 @@ export default function LoginPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            // required
             fullWidth
             id="email"
             label="Email Address"
@@ -88,7 +86,6 @@ export default function LoginPage() {
           <TextField
             variant="outlined"
             margin="normal"
-            // required
             fullWidth
             name="password"
             label="Password"
@@ -113,12 +110,6 @@ export default function LoginPage() {
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              Forgot password?
-            </Grid>
-            <Grid item>{"Don't have an account? Sign Up"}</Grid>
-          </Grid>
         </form>
       </div>
     </Container>
