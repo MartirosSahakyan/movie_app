@@ -1,17 +1,18 @@
 import { useState } from "react";
 import MoveCard from "../../components/Movies/MovieCard";
+import { storage } from "../../constants/storage";
+import { getLocalStorage } from "../../helper/localStorage";
 import styles from "./FavoritePage.module.css";
 
 export function FavoritePage() {
-  const movies = localStorage.getItem("favorites")
-    ? JSON.parse(localStorage.getItem("favorites"))
+  const movies = getLocalStorage(storage.fav)
+    ? getLocalStorage(storage.fav)
     : "";
   // fake render favorite page for dinamik delete cards from favorite pagei
   const [fakeState, setFakeState] = useState(1);
   const fakeRender = () => {
     setFakeState(fakeState + 1);
   };
-
 
   return (
     <section className={styles.container}>

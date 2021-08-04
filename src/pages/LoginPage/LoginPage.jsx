@@ -57,7 +57,7 @@ export default function LoginPage() {
     onSubmit: (values) => {
       console.log("signIn data", JSON.stringify(values, null, 2));
       history.push("/home/movies");
-      localStorage.setItem("isAuth", true);
+      // localStorage.setItem("isAuth", true);
     },
   });
 
