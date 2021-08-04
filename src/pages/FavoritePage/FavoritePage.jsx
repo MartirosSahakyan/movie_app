@@ -8,7 +8,7 @@ export function FavoritePage() {
   const movies = getLocalStorage(storage.fav)
     ? getLocalStorage(storage.fav)
     : "";
-  // fake render favorite page for dinamik delete cards from favorite pagei
+  // fake render favorite page for dynamic delete cards from favorite pages
   const [fakeState, setFakeState] = useState(1);
   const fakeRender = () => {
     setFakeState(fakeState + 1);
