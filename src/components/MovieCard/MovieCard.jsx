@@ -20,7 +20,9 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 245,
     marginBottom: 30,
+    marginTop: 30,
   },
+    
   favBtn: {
     padding: 0,
   },
