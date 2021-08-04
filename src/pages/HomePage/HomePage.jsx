@@ -23,17 +23,6 @@ export default function HomePage() {
     });
   }, [currPage]);
 
-  window.addEventListener("scroll", function (e) {
-    if (
-      Math.ceil(window.scrollY) + 50 >=
-      document.documentElement.scrollHeight -
-        document.documentElement.clientHeight
-    ) {
-      setCurrPage((prevCurrPage) => prevCurrPage + 1);
-      window.scrollBy(-20, -20);
-    }
-  });
-
   useEffect(() => {
     if (searchQuery) {
       setLoading(true);
@@ -56,16 +45,16 @@ export default function HomePage() {
 
   return (
     <>
-        <Header handleSearchInput={handleSearchInput} />
-        <Switch>
-          <Route exact path="/home/movies">
-            <Movies movies={movies} loading={loading} />
-          </Route>
-          <Route exact path="/home/favorites">
-            <FavoritePage />
-          </Route>
-          <Route path="/home/movies/:id" component={MovieDetails}></Route>
-        </Switch>
+      <Header handleSearchInput={handleSearchInput} />
+      <Switch>
+        <Route exact path="/home/movies">
+          <Movies setCurrPage={setCurrPage} movies={movies} loading={loading} />
+        </Route>
+        <Route exact path="/home/favorites">
+          <FavoritePage />
+        </Route>
+        <Route path="/home/movies/:id" component={MovieDetails}></Route>
+      </Switch>
     </>
   );
 }

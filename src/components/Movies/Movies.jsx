@@ -5,8 +5,24 @@ import { getGenres } from "../../services";
 import styles from "./Movies.module.css";
 import Loader from "../Loader/Loader";
 
-export default function Movies({ movies, loading }) {
+export default function Movies({ movies, loading, setCurrPage }) {
   const [genres, setGenres] = useState("");
+
+  const lazyLoad = () => {
+    if (
+      Math.ceil(window.scrollY) + 50 >=
+      document.documentElement.scrollHeight -
+        document.documentElement.clientHeight
+    ) {
+      setCurrPage((prevCurrPage) => prevCurrPage + 1);
+      window.scrollBy(-20, -20);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", lazyLoad);
+    return () => window.removeEventListener("scroll", lazyLoad);
+  });
 
   useEffect(() => {
     getGenres().then(({ genres }) => {
