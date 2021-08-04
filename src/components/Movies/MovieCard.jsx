@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -7,10 +9,12 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Chip from "@material-ui/core/Chip";
 import { getImgUrl } from "../../service/services";
 import { Link } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 245,
@@ -18,6 +22,9 @@ const useStyles = makeStyles({
   },
   favBtn: {
     padding: 0,
+  },
+  genres: {
+    margin: 2,
   },
 });
 
@@ -68,7 +75,16 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {genres.map((genre, index) => {
-                return <span key={index}>{genre}</span>;
+                return (
+                  <Chip
+                    className={classes.genres}
+                    key={index}
+                    label={genre}
+                    variant="outlined"
+                    color="primary"
+                    size="small"
+                  />
+                );
               })}
             </Typography>
           </CardContent>
@@ -82,7 +98,7 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
           onClick={handleFavIconToggle}
         >
           <span style={{ width: "100%", height: "100%" }} onClick={fakeRender}>
-            {isFavorite ? "-" : "+"}
+            {isFavorite ? <FavoriteBorderIcon /> : <FavoriteIcon />}
           </span>
         </Button>
       </CardActions>
