@@ -3,19 +3,17 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useFormik } from "formik";
-import * as yup from "yup";
 import { useHistory, Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { getLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
 import { isUserValid } from "../../helper/isUserValid";
-import Alert from '@material-ui/lab/Alert';
+import Alert from "@material-ui/lab/Alert";
+import { validationLogin } from "../../helper/formValidation";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,17 +34,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
-const validationLogin = yup.object({
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup
-    .string("Enter your password")
-    .min(4, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
-});
 
 export default function LoginPage() {
   const classes = useStyles();
