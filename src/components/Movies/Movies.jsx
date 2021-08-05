@@ -4,7 +4,8 @@ import { findGenreName } from "../../helper/findGenreName";
 import { getGenres } from "../../service/services";
 import styles from "./Movies.module.css";
 import Loader from "../Loader/Loader";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
+import ScrollTop from "../ScrollTop/ScrollTop";
 
 export default function Movies({ movies, loading, setCurrPage }) {
   const [genres, setGenres] = useState("");
@@ -50,12 +51,13 @@ export default function Movies({ movies, loading, setCurrPage }) {
           );
         })
       )}
+      <ScrollTop></ScrollTop>
     </section>
   );
 }
 
-Movies.propTypes ={
+Movies.propTypes = {
   movies: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
-  setCurrPage: PropTypes.func.isRequired
-}
+  setCurrPage: PropTypes.func.isRequired,
+};
