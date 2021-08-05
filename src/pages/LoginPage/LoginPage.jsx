@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,8 +12,8 @@ import { Grid } from "@material-ui/core";
 import { getLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
 import { isUserValid } from "../../helper/isUserValid";
-import Alert from "@material-ui/lab/Alert";
 import { validationLogin } from "../../helper/formValidation";
+import SignInError from "../../components/Error/SignInError";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,8 +36,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LoginPage() {
-  const classes = useStyles();
-  let history = useHistory();
+  const [errorSignUp, setErrorSignUp] = useState(false);
+  const [errorPassEmail, setErrorPassEmail] = useState(false);
+  
+  const classes = useStyles();  
+  const history = useHistory();
 
   const formik = useFormik({
     initialValues: {
@@ -46,20 +49,21 @@ export default function LoginPage() {
     },
     validationSchema: validationLogin,
     onSubmit: (values) => {
-      // console.log("signIn data", values);
       const users = getLocalStorage(storage.users);
       if (users) {
+        setErrorSignUp(!errorSignUp);
         if (isUserValid(users, values)) {
           history.push("/home/movies");
+          setErrorPassEmail(!errorPassEmail);
         } else {
-          alert("Wrong pass or email");
+          setErrorPassEmail(!errorPassEmail);
         }
       } else {
-        alert("plz sign UP");
+        setErrorSignUp(!errorSignUp);
       }
     },
   });
-
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -97,7 +101,11 @@ export default function LoginPage() {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <Alert severity="error">This is an error alert — check it out!</Alert>
+          {errorPassEmail ? (
+            <SignInError message={"Wrong password or Email"} />
+          ) : errorSignUp ? (
+            <SignInError message={"Please Sign Up"} />
+          ) : null}
           <Button
             type="submit"
             fullWidth

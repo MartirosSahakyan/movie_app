@@ -7,7 +7,7 @@ export const validationLogin = yup.object({
     .required("Email is required"),
   password: yup
     .string("Enter your password")
-    .min(4, "Password should be of minimum 8 characters length")
+    .min(4, "Password should be of minimum 4 characters length")
     .required("Password is required"),
 });
 
@@ -18,7 +18,7 @@ export const validationSignUp = yup.object({
     .required("Email is required"),
   password: yup
     .string("Enter your password")
-    .min(4, "Password should be of minimum 8 characters length")
+    .min(4, "Password should be of minimum 4 characters length")
     .required("Password is required"),
   firstName: yup.string("Enter your password").required("Password is required"),
   lastName: yup.string("Enter your password").required("Password is required"),
