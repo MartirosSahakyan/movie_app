@@ -2,7 +2,7 @@
 
 Movie Search Application built with the React    
 
- **[DEMO VERSION](movie-app-fambx3vds-martirossahakyan.vercel.app)**
+ **[DEMO VERSION](https://movie-app-git-main-martirossahakyan.vercel.app/)**
 ### Application Features 
 You must log in to use this application
 
