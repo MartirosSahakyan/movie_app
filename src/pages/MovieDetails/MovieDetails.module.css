@@ -15,7 +15,6 @@
 }
 .backgroundDetails {
   position: relative;
-  height: calc(100vh - 72px);
   opacity: 0.6;
 }
 .backgroundPath {
@@ -25,7 +24,6 @@
   max-width: 96% !important;
   margin-left: 2%;
   margin-top: 20px;
-  height: calc(100vh - 120px);
   top: 72px;
   left: 0;
   border: 1px solid rgb(255, 255, 255);
