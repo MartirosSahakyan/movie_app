@@ -10,7 +10,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const validationSchema = yup.object({
+const validationLogin = yup.object({
   email: yup
     .string("Enter your email")
     .email("Enter a valid email")
@@ -52,7 +53,7 @@ export default function LoginPage() {
       email: "",
       password: "",
     },
-    validationSchema: validationSchema,
+    validationSchema: validationLogin,
     onSubmit: (values) => {
       console.log("signIn data", JSON.stringify(values, null, 2));
       history.push("/home/movies");
@@ -109,6 +110,13 @@ export default function LoginPage() {
           >
             Sign In
           </Button>
+          <Grid container>
+            <Grid item>
+              <Link to='/signUp'>
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
     </Container>
