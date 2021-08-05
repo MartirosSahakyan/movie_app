@@ -2,4 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content:space-around;
+    background: url("../../assets/images/favoriteBgImage.jpg");
+    background-attachment: fixed;
+    background-size: cover;
 }
