@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { getMovieById } from "../../service/services";
 import StarsIcon from "@material-ui/icons/Stars";
 import styles from "./MovieDetails.module.css";
-import { getImgUrl } from "../../helper/imgFullUrl";
 import Loader from '../../components/Loader/Loader'
+import { getImgUrl } from "../../helper/utils";
 
 export default function MovieDetails() {
   const [movieDetail, setMovieDetail] = useState("");

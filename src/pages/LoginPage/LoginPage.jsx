@@ -11,10 +11,10 @@ import { useHistory, Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { getLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
-import { isUserValid } from "../../helper/isUserValid";
 import { validationLogin } from "../../helper/formValidation";
 import SignInError from "../../components/Error/SignInError";
 import { Routes } from "../../constants/routes";
+import { isUserValid } from "../../helper/utils";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
