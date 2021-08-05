@@ -5,4 +5,11 @@
     background: url("../../assets/images/favoriteBgImage.jpg");
     background-attachment: fixed;
     background-size: cover;
+    height: 90vh;
+}
+h2{
+    color: white;
+    margin-top: 100px;
+    letter-spacing: 6px;
+    font-size: 35px;
 }
