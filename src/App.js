@@ -1,22 +1,25 @@
-import HomePage from "./pages/HomePage/HomePage";
-import LoginPage from "./pages/LoginPage/LoginPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import SignUp from "./pages/SignUpPage/SignUp";
+import { Routes } from "./constants/routes";
 
 export default function App() {
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <LoginPage />
-          </Route>
-          <Route exact path="/signUp">
-            <SignUp />
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
+          <Route
+            exact
+            path={Routes.loginPage.url}
+            component={Routes.loginPage.component}
+          />
+          <Route
+            exact
+            path={Routes.signUp.url}
+            component={Routes.signUp.component}
+          />
+          <Route
+            path={Routes.homePage.url}
+            component={Routes.homePage.component}
+          />
         </Switch>
       </Router>
     </>

@@ -14,6 +14,7 @@ import { storage } from "../../constants/storage";
 import { isUserValid } from "../../helper/isUserValid";
 import { validationLogin } from "../../helper/formValidation";
 import SignInError from "../../components/Error/SignInError";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,8 +39,8 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginPage() {
   const [errorSignUp, setErrorSignUp] = useState(false);
   const [errorPassEmail, setErrorPassEmail] = useState(false);
-  
-  const classes = useStyles();  
+
+  const classes = useStyles();
   const history = useHistory();
 
   const formik = useFormik({
@@ -53,7 +54,7 @@ export default function LoginPage() {
       if (users) {
         setErrorSignUp(!errorSignUp);
         if (isUserValid(users, values)) {
-          history.push("/home/movies");
+          history.push(`${Routes.homePage.url}`);
           setErrorPassEmail(!errorPassEmail);
         } else {
           setErrorPassEmail(!errorPassEmail);
@@ -63,7 +64,7 @@ export default function LoginPage() {
       }
     },
   });
-  
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -117,7 +118,9 @@ export default function LoginPage() {
           </Button>
           <Grid container>
             <Grid item>
-              <Link to="/signUp">{"Don't have an account? Sign Up"}</Link>
+              <Link to={Routes.signUp.url}>
+                {"Don't have an account? Sign Up"}
+              </Link>
             </Grid>
           </Grid>
         </form>

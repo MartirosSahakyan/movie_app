@@ -13,6 +13,7 @@ import { useHistory, Link } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
 import { validationSignUp } from "../../helper/formValidation";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -55,9 +56,7 @@ export default function SignUp() {
         ? getLocalStorage(storage.users)
         : [];
       setLocalStorage(storage.users, [...storageUsers, signUpData]);
-
-      // console.log("signUp data", JSON.stringify(signUpData, null, 2));
-      history.push("/");
+      history.push(`${Routes.loginPage.url}`);
     },
   });
 
@@ -78,7 +77,6 @@ export default function SignUp() {
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
-                // required
                 fullWidth
                 id="firstName"
                 label="First Name"
@@ -94,7 +92,6 @@ export default function SignUp() {
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
-                // required
                 fullWidth
                 id="lastName"
                 label="Last Name"
@@ -111,7 +108,6 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                // required
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -126,7 +122,6 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                // required
                 fullWidth
                 name="password"
                 label="Password"
@@ -153,7 +148,9 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to="/">Already have an account? Sign in</Link>
+              <Link to={Routes.loginPage.url}>
+                Already have an account? Sign in
+              </Link>
             </Grid>
           </Grid>
         </form>

@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
 import PropTypes from "prop-types";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles({
   root: {
@@ -35,6 +36,7 @@ let favorites = [];
 
 export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
   const classes = useStyles();
+
   let isfav = favorites.some((movie) => movie.id === id);
   const [isFavorite, setIsFavorite] = useState(isfav);
 
@@ -63,7 +65,7 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
 
   return (
     <Card className={classes.root}>
-      <Link to={`/home/movies/${id}`}>
+      <Link to={`${Routes.movieDetails.url}${id}`}>
         <CardActionArea>
           <CardMedia
             component="img"

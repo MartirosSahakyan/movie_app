@@ -8,6 +8,7 @@ import { alpha, makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,7 +91,7 @@ export default function Navbar({ handleSearchInput }) {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="/home/movies">
+            <Link to={Routes.movies.url}>
               <HomeIcon className={classes.homeIcon} fontSize="large" />
             </Link>
           </Typography>
@@ -107,10 +108,10 @@ export default function Navbar({ handleSearchInput }) {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <Link to="/home/favorites">
+          <Link to={Routes.favoritePage.url}>
             <Button className={classes.favButton}>Favorite</Button>
           </Link>
-          <Link to="/">
+          <Link to={Routes.loginPage.url}>
             <Button className={classes.logout}>Log Out</Button>
           </Link>
         </Toolbar>

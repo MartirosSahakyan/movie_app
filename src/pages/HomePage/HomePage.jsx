@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { getMoviesByPage, getMoviesByQuery } from "../../service/services";
 import { Switch, Route } from "react-router-dom";
-import MovieDetails from "../../pages/MovieDetails/MovieDetails";
 import Header from "../../components/Header/Header";
-import Movies from "../../components/Movies/Movies";
-import { FavoritePage } from "../FavoritePage/FavoritePage";
+import { Routes } from "../../constants/routes";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -47,13 +45,26 @@ export default function HomePage() {
     <>
       <Header handleSearchInput={handleSearchInput} />
       <Switch>
-        <Route exact path="/home/movies">
-          <Movies setCurrPage={setCurrPage} movies={movies} loading={loading} />
-        </Route>
-        <Route exact path="/home/favorites">
-          <FavoritePage />
-        </Route>
-        <Route path="/home/movies/:id" component={MovieDetails}></Route>
+        <Route
+          exact
+          path={Routes.movies.url}
+          component={() => (
+            <Routes.movies.component
+              setCurrPage={setCurrPage}
+              movies={movies}
+              loading={loading}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={Routes.favoritePage.url}
+          component={Routes.favoritePage.component}
+        />
+        <Route
+          path={`${Routes.movieDetails.url}:id`}
+          component={Routes.movieDetails.component}
+        ></Route>
       </Switch>
     </>
   );
