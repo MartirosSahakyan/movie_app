@@ -9,6 +9,7 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Routes } from "../../constants/routes";
+import { Badge } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar({ handleSearchInput }) {
+export default function Navbar({ handleSearchInput, favCount }) {
   const classes = useStyles();
 
   return (
@@ -109,7 +110,9 @@ export default function Navbar({ handleSearchInput }) {
             />
           </div>
           <Link to={Routes.favoritePage.url}>
-            <Button className={classes.favButton}>Favorite</Button>
+            <Badge color="secondary" badgeContent={favCount} max={10}>
+              <Button className={classes.favButton}>Favorite</Button>
+            </Badge>
           </Link>
           <Link to={Routes.loginPage.url}>
             <Button className={classes.logout}>Log Out</Button>
@@ -122,4 +125,5 @@ export default function Navbar({ handleSearchInput }) {
 
 Navbar.propTypes = {
   handleSearchInput: PropTypes.func.isRequired,
+  favCount: PropTypes.number,
 };

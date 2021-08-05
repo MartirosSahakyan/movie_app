@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 
 let favorites = [];
 
-export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
+export default function MoveCard({ title, imgPath, genres, id, setFavCount }) {
   const classes = useStyles();
 
   let isfav = favorites.some((movie) => movie.id === id);
@@ -57,9 +57,11 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
         storage.fav,
         favorites.filter((movie) => movie.id !== id)
       );
+      setFavCount((prevFavCount) => prevFavCount - 1);
     } else {
       favorites.push(movieInfo);
       setLocalStorage(storage.fav, favorites);
+      setFavCount((prevFavCount) => prevFavCount + 1);
     }
   };
 
@@ -108,13 +110,11 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
           color="primary"
           onClick={handleFavIconToggle}
         >
-          <span style={{ width: "100%", height: "100%" }} onClick={fakeRender}>
-            {isFavorite ? (
-              <FavoriteIcon style={{ color: "orange" }} />
-            ) : (
-              <FavoriteBorderIcon />
-            )}
-          </span>
+          {isFavorite ? (
+            <FavoriteIcon style={{ color: "orange" }} />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
         </Button>
       </CardActions>
     </Card>
@@ -126,5 +126,5 @@ MoveCard.propTypes = {
   imgPath: PropTypes.string,
   genres: PropTypes.array.isRequired,
   id: PropTypes.number.isRequired,
-  fakeRender: PropTypes.func,
+  setFavCount: PropTypes.func.isRequired,
 };

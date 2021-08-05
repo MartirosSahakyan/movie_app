@@ -1,18 +1,13 @@
-import { useState } from "react";
 import MoveCard from "../../components/MovieCard/MovieCard";
 import { storage } from "../../constants/storage";
 import { getLocalStorage } from "../../helper/localStorage";
 import styles from "./FavoritePage.module.css";
+import PropTypes from "prop-types";
 
-export function FavoritePage() {
+export function FavoritePage({ setFavCount }) {
   const movies = getLocalStorage(storage.fav)
     ? getLocalStorage(storage.fav)
     : "";
-  // fake render favorite page for dynamic delete cards from favorite pages
-  const [fakeState, setFakeState] = useState(1);
-  const fakeRender = () => {
-    setFakeState(fakeState + 1);
-  };
 
   return (
     <section className={styles.container}>
@@ -27,7 +22,7 @@ export function FavoritePage() {
               genres={movie.genres}
               id={movie.id}
               key={movie.id}
-              fakeRender={fakeRender}
+              setFavCount={setFavCount}
             />
           );
         })
@@ -35,3 +30,7 @@ export function FavoritePage() {
     </section>
   );
 }
+
+FavoritePage.propTypes = {
+  setFavCount: PropTypes.func.isRequired,
+};

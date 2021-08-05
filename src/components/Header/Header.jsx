@@ -10,7 +10,10 @@ export default function Header(props) {
     <React.Fragment>
       <CssBaseline />
       <AppBar>
-        <Navbar handleSearchInput={props.handleSearchInput} />
+        <Navbar
+          handleSearchInput={props.handleSearchInput}
+          favCount={props.favCount}
+        />
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
     </React.Fragment>
@@ -19,4 +22,5 @@ export default function Header(props) {
 
 Header.propTypes = {
   handleSearchInput: PropTypes.func.isRequired,
+  favCount: PropTypes.number.isRequired,
 };

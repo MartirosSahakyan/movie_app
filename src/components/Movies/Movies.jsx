@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import ScrollTop from "../ScrollTop/ScrollTop";
 import { findGenreName } from "../../helper/utils";
 
-export default function Movies({ movies, loading, setCurrPage }) {
+export default function Movies({ movies, loading, setCurrPage, setFavCount }) {
   const [genres, setGenres] = useState("");
 
   const lazyLoad = () => {
@@ -49,6 +49,7 @@ export default function Movies({ movies, loading, setCurrPage }) {
               title={movie.title}
               genres={genres ? findGenreName(genres, movie.genre_ids) : []}
               imgPath={movie.poster_path}
+              setFavCount={setFavCount}
             />
           );
         })
@@ -62,4 +63,5 @@ Movies.propTypes = {
   movies: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
   setCurrPage: PropTypes.func.isRequired,
+  setFavCount: PropTypes.func.isRequired,
 };
