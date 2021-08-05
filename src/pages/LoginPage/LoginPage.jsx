@@ -12,6 +12,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useHistory, Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
+import { getLocalStorage } from "../../helper/localStorage";
+import { storage } from "../../constants/storage";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -55,8 +57,18 @@ export default function LoginPage() {
     },
     validationSchema: validationLogin,
     onSubmit: (values) => {
-      console.log("signIn data", JSON.stringify(values, null, 2));
-      history.push("/home/movies");
+      // console.log("signIn data", JSON.stringify(values, null, 2));
+      if(getLocalStorage(storage.users)){
+       const users = getLocalStorage(storage.users)
+       if(users.password === values.password && users.email === values.email){
+        history.push("/home/movies");
+       }else{
+        alert('plz sign UP')
+       }
+      }else{
+        alert('plz sign UP')
+      }
+
     },
   });
 

@@ -15,6 +15,8 @@ import Container from "@material-ui/core/Container";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useHistory, Link } from "react-router-dom";
+import { setLocalStorage } from "../../helper/localStorage";
+import { storage } from "../../constants/storage";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -73,7 +75,8 @@ export default function SignUp() {
         ...values,
         id: Date.now()
       }
-      console.log("signUp data", JSON.stringify(signUpData, null, 2));
+      setLocalStorage(storage.users, signUpData)
+      // console.log("signUp data", JSON.stringify(signUpData, null, 2));
       history.push("/");
     },
   });
