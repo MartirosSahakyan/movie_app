@@ -14,7 +14,8 @@ import { useHistory, Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { getLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
-import { isUserRegistered } from "../../helper/isUserRegistered";
+import { isUserValid } from "../../helper/isUserValid";
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,7 +62,7 @@ export default function LoginPage() {
       // console.log("signIn data", values);
       const users = getLocalStorage(storage.users);
       if (users) {
-        if (isUserRegistered(users, values)) {
+        if (isUserValid(users, values)) {
           history.push("/home/movies");
         } else {
           alert("Wrong pass or email");
@@ -109,10 +110,7 @@ export default function LoginPage() {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+          <Alert severity="error">This is an error alert — check it out!</Alert>
           <Button
             type="submit"
             fullWidth
