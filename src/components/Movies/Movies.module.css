@@ -5,4 +5,5 @@
     background: url("../../assets/images/homeBgImage.jpg");
     background-attachment: fixed;
     background-size: cover;
+    height: 80vh;
 }

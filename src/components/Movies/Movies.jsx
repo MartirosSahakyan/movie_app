@@ -35,7 +35,9 @@ export default function Movies({ movies, loading, setCurrPage }) {
   return (
     <section className={styles.container}>
       {loading ? (
-        <Loader />
+        <div style={{ marginTop: "100px" }}>
+          <Loader />
+        </div>
       ) : !movies ? (
         <h3>No Such Fim</h3>
       ) : (
