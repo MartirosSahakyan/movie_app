@@ -15,9 +15,8 @@ import Container from "@material-ui/core/Container";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useHistory, Link } from "react-router-dom";
-import { setLocalStorage } from "../../helper/localStorage";
+import { getLocalStorage, setLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,16 +45,10 @@ const validationSignUp = yup.object({
     .required("Email is required"),
   password: yup
     .string("Enter your password")
-    .min(8, "Password should be of minimum 8 characters length")
+    .min(4, "Password should be of minimum 8 characters length")
     .required("Password is required"),
-  firstName: yup
-    .string("Enter your password")
-    // .min(8, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
-  lastName: yup
-    .string("Enter your password")
-    // .min(8, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
+  firstName: yup.string("Enter your password").required("Password is required"),
+  lastName: yup.string("Enter your password").required("Password is required"),
 });
 
 export default function SignUp() {
@@ -73,9 +66,13 @@ export default function SignUp() {
     onSubmit: (values) => {
       const signUpData = {
         ...values,
-        id: Date.now()
-      }
-      setLocalStorage(storage.users, signUpData)
+        id: Date.now(),
+      };
+      const storageUsers = getLocalStorage(storage.users)
+        ? getLocalStorage(storage.users)
+        : [];
+      setLocalStorage(storage.users, [...storageUsers, signUpData]);
+
       // console.log("signUp data", JSON.stringify(signUpData, null, 2));
       history.push("/");
     },
@@ -173,10 +170,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to='/'>
-            Already have an account?
-                 Sign in
-              </Link>
+              <Link to="/">Already have an account? Sign in</Link>
             </Grid>
           </Grid>
         </form>

@@ -14,6 +14,7 @@ import { useHistory, Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { getLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
+import { isUserRegistered } from "../../helper/isUserRegistered";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,7 +43,7 @@ const validationLogin = yup.object({
     .required("Email is required"),
   password: yup
     .string("Enter your password")
-    .min(8, "Password should be of minimum 8 characters length")
+    .min(4, "Password should be of minimum 8 characters length")
     .required("Password is required"),
 });
 
@@ -57,18 +58,17 @@ export default function LoginPage() {
     },
     validationSchema: validationLogin,
     onSubmit: (values) => {
-      // console.log("signIn data", JSON.stringify(values, null, 2));
-      if(getLocalStorage(storage.users)){
-       const users = getLocalStorage(storage.users)
-       if(users.password === values.password && users.email === values.email){
-        history.push("/home/movies");
-       }else{
-        alert('plz sign UP')
-       }
-      }else{
-        alert('plz sign UP')
+      // console.log("signIn data", values);
+      const users = getLocalStorage(storage.users);
+      if (users) {
+        if (isUserRegistered(users, values)) {
+          history.push("/home/movies");
+        } else {
+          alert("Wrong pass or email");
+        }
+      } else {
+        alert("plz sign UP");
       }
-
     },
   });
 
@@ -124,9 +124,7 @@ export default function LoginPage() {
           </Button>
           <Grid container>
             <Grid item>
-              <Link to='/signUp'>
-                {"Don't have an account? Sign Up"}
-              </Link>
+              <Link to="/signUp">{"Don't have an account? Sign Up"}</Link>
             </Grid>
           </Grid>
         </form>
