@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     marginBottom: 30,
     marginTop: 30,
   },
-    
+
   favBtn: {
     padding: 0,
   },
@@ -121,7 +121,7 @@ export default function MoveCard({ title, imgPath, genres, id, fakeRender }) {
 
 MoveCard.propTypes = {
   title: PropTypes.string.isRequired,
-  imgPath: PropTypes.string.isRequired,
+  imgPath: PropTypes.string,
   genres: PropTypes.array.isRequired,
   id: PropTypes.number.isRequired,
   fakeRender: PropTypes.func,
