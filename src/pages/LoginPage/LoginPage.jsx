@@ -54,7 +54,7 @@ export default function LoginPage() {
       if (users) {
         setErrorSignUp(!errorSignUp);
         if (isUserValid(users, values)) {
-          history.push(`${Routes.homePage.url}`);
+          history.push(`${Routes.movies.url}`);
           setErrorPassEmail(!errorPassEmail);
         } else {
           setErrorPassEmail(!errorPassEmail);
