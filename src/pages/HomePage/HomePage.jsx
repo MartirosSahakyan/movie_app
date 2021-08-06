@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { getMoviesByPage, getMoviesByQuery } from "../../service/services";
+import {
+  getGenres,
+  getMoviesByPage,
+  getMoviesByQuery,
+} from "../../service/services";
 import { Switch, Route } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { Routes } from "../../constants/routes";
@@ -16,6 +20,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [currPage, setCurrPage] = useState(1);
   const [favCount, setFavCount] = useState(initialFavCount);
+  const [genres, setGenres] = useState("");
 
   const handleSearchInput = (e) => {
     setSearchQuery(e.target.value);
@@ -48,6 +53,12 @@ export default function HomePage() {
     }
   }, [searchQuery]);
 
+  useEffect(() => {
+    getGenres().then(({ genres }) => {
+      setGenres(genres);
+    });
+  }, []);
+
   return (
     <>
       <Header handleSearchInput={handleSearchInput} favCount={favCount} />
@@ -61,6 +72,7 @@ export default function HomePage() {
               movies={movies}
               loading={loading}
               setFavCount={setFavCount}
+              genres={genres}
             />
           )}
         />

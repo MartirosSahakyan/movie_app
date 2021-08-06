@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import MoveCard from "../MovieCard/MovieCard";
-import { getGenres } from "../../service/services";
 import styles from "./Movies.module.css";
 import Loader from "../Loader/Loader";
 import PropTypes from "prop-types";
 import ScrollTop from "../ScrollTop/ScrollTop";
 import { findGenreName } from "../../helper/utils";
 
-export default function Movies({ movies, loading, setCurrPage, setFavCount }) {
-  const [genres, setGenres] = useState("");
+export default function Movies({ movies, loading, setCurrPage, setFavCount, genres }) {
 
   const lazyLoad = () => {
     if (
@@ -25,12 +23,6 @@ export default function Movies({ movies, loading, setCurrPage, setFavCount }) {
     window.addEventListener("scroll", lazyLoad);
     return () => window.removeEventListener("scroll", lazyLoad);
   });
-
-  useEffect(() => {
-    getGenres().then(({ genres }) => {
-      setGenres(genres);
-    });
-  }, []);
 
   return (
     <section className={styles.container}>
@@ -64,4 +56,5 @@ Movies.propTypes = {
   loading: PropTypes.bool.isRequired,
   setCurrPage: PropTypes.func.isRequired,
   setFavCount: PropTypes.func.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
