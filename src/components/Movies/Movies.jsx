@@ -61,5 +61,5 @@ Movies.propTypes = {
   loading: PropTypes.bool.isRequired,
   setCurrPage: PropTypes.func.isRequired,
   setFavCount: PropTypes.func.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.object),
 };

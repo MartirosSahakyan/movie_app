@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import {
   getGenres,
@@ -13,6 +13,9 @@ import { storage } from "../../constants/storage";
 const initialFavCount = getLocalStorage(storage.fav)
   ? getLocalStorage(storage.fav).length
   : 0;
+
+export const FavCountContext = createContext();
+export const SearchContext = createContext();
 
 export default function HomePage(props) {
   const [movies, setMovies] = useState([]);
@@ -61,33 +64,37 @@ export default function HomePage(props) {
 
   return (
     <>
-      <Header handleSearchInput={handleSearchInput} favCount={favCount} />
-      <Switch>
-        <Route
-          exact
-          path={Routes.movies.url}
-          component={() => (
-            <Routes.movies.component
-              setCurrPage={setCurrPage}
-              movies={movies}
-              loading={loading}
-              setFavCount={setFavCount}
-              genres={genres}
+      <FavCountContext.Provider value={favCount}>
+        <SearchContext.Provider value={handleSearchInput}>
+          <Header />
+          <Switch>
+            <Route
+              exact
+              path={Routes.movies.url}
+              component={() => (
+                <Routes.movies.component
+                  setCurrPage={setCurrPage}
+                  movies={movies}
+                  loading={loading}
+                  setFavCount={setFavCount}
+                  genres={genres}
+                />
+              )}
             />
-          )}
-        />
-        <Route
-          exact
-          path={Routes.favoritePage.url}
-          component={() => (
-            <Routes.favoritePage.component setFavCount={setFavCount} />
-          )}
-        />
-        <Route
-          path={`${Routes.movieDetails.url}:id`}
-          component={Routes.movieDetails.component}
-        ></Route>
-      </Switch>
+            <Route
+              exact
+              path={Routes.favoritePage.url}
+              component={() => (
+                <Routes.favoritePage.component setFavCount={setFavCount} />
+              )}
+            />
+            <Route
+              path={`${Routes.movieDetails.url}:id`}
+              component={Routes.movieDetails.component}
+            ></Route>
+          </Switch>
+        </SearchContext.Provider>
+      </FavCountContext.Provider>
     </>
   );
 }

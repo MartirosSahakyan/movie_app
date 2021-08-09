@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -10,17 +9,10 @@ export default function Header(props) {
     <React.Fragment>
       <CssBaseline />
       <AppBar>
-        <Navbar
-          handleSearchInput={props.handleSearchInput}
-          favCount={props.favCount}
-        />
+        <Navbar />
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
     </React.Fragment>
   );
 }
 
-Header.propTypes = {
-  handleSearchInput: PropTypes.func.isRequired,
-  favCount: PropTypes.number.isRequired,
-};

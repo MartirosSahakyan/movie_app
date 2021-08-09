@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -10,6 +9,7 @@ import { alpha, makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Badge } from "@material-ui/core";
 import { Routes } from "../../constants/routes";
+import { FavCountContext, SearchContext } from "../../pages/HomePage/HomePage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -84,8 +84,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar({ handleSearchInput, favCount }) {
+export default function Navbar(props) {
   const classes = useStyles();
+  const favCount = useContext(FavCountContext);
+  const handleSearchInput = useContext(SearchContext);
 
   return (
     <div className={classes.root}>
@@ -123,7 +125,3 @@ export default function Navbar({ handleSearchInput, favCount }) {
   );
 }
 
-Navbar.propTypes = {
-  handleSearchInput: PropTypes.func.isRequired,
-  favCount: PropTypes.number,
-};
