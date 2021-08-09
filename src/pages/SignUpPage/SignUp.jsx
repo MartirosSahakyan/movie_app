@@ -56,7 +56,7 @@ export default function SignUp() {
         ? getLocalStorage(storage.users)
         : [];
       setLocalStorage(storage.users, [...storageUsers, signUpData]);
-      history.push(`${Routes.loginPage.url}`);
+      history.push(`${Routes.movies.url}`);
     },
   });
 
