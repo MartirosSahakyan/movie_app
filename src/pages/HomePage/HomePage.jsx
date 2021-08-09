@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
+import { Switch, Route } from "react-router-dom";
 import {
   getGenres,
   getMoviesByPage,
   getMoviesByQuery,
 } from "../../service/services";
-import { Switch, Route } from "react-router-dom";
+import { getLocalStorage } from "../../helper/localStorage";
 import Header from "../../components/Header/Header";
 import { Routes } from "../../constants/routes";
-import { getLocalStorage } from "../../helper/localStorage";
 import { storage } from "../../constants/storage";
 
 const initialFavCount = getLocalStorage(storage.fav)
   ? getLocalStorage(storage.fav).length
   : 0;
 
-export default function HomePage() {
+export default function HomePage(props) {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);

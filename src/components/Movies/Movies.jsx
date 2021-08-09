@@ -1,13 +1,18 @@
-import { useEffect} from "react";
-import MoveCard from "../MovieCard/MovieCard";
-import styles from "./Movies.module.css";
-import Loader from "../Loader/Loader";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
+import MoveCard from "../MovieCard/MovieCard";
 import ScrollTop from "../ScrollTop/ScrollTop";
+import Loader from "../Loader/Loader";
+import styles from "./Movies.module.css";
 import { findGenreName } from "../../helper/utils";
 
-export default function Movies({ movies, loading, setCurrPage, setFavCount, genres }) {
-
+export default function Movies({
+  movies,
+  loading,
+  setCurrPage,
+  setFavCount,
+  genres,
+}) {
   const lazyLoad = () => {
     if (
       Math.ceil(window.scrollY) + 50 >=

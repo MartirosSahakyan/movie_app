@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory, Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -6,15 +7,14 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { useFormik } from "formik";
-import { useHistory, Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
-import { getLocalStorage } from "../../helper/localStorage";
-import { storage } from "../../constants/storage";
-import { validationLogin } from "../../helper/formValidation";
+import { useFormik } from "formik";
 import SignInError from "../../components/Error/SignInError";
-import { Routes } from "../../constants/routes";
+import { getLocalStorage } from "../../helper/localStorage";
+import { validationLogin } from "../../helper/formValidation";
 import { isUserValid } from "../../helper/utils";
+import { storage } from "../../constants/storage";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginPage() {
+export default function LoginPage(props) {
   const [errorSignUp, setErrorSignUp] = useState(false);
   const [errorPassEmail, setErrorPassEmail] = useState(false);
 

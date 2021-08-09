@@ -12,4 +12,3 @@ export function setLocalStorage(key, value) {
     console.log(e);
   }
 }
-   

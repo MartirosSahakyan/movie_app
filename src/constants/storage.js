@@ -1,5 +1,5 @@
 export const storage = {
   fav: "favorites",
-  users: 'users',
+  users: "users",
   isAuth: "isAuth",
 };

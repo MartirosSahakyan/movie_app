@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -6,10 +8,8 @@ import InputBase from "@material-ui/core/InputBase";
 import HomeIcon from "@material-ui/icons/Home";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { Routes } from "../../constants/routes";
 import { Badge } from "@material-ui/core";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   root: {

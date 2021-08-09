@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -10,12 +12,10 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
-import { Link } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../helper/localStorage";
-import { storage } from "../../constants/storage";
-import PropTypes from "prop-types";
-import { Routes } from "../../constants/routes";
 import { getImgUrl } from "../../helper/utils";
+import { storage } from "../../constants/storage";
+import { Routes } from "../../constants/routes";
 
 const useStyles = makeStyles({
   root: {
@@ -36,8 +36,8 @@ let favorites = [];
 
 export default function MoveCard({ title, imgPath, genres, id, setFavCount }) {
   const classes = useStyles();
-
   let isfav = favorites.some((movie) => movie.id === id);
+
   const [isFavorite, setIsFavorite] = useState(isfav);
 
   favorites = getLocalStorage(storage.fav) ? getLocalStorage(storage.fav) : [];

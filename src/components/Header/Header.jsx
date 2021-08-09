@@ -1,9 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Navbar from "./Navbar";
-import PropTypes from "prop-types";
 
 export default function Header(props) {
   return (

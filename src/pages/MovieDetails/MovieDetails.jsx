@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getMovieById } from "../../service/services";
 import StarsIcon from "@material-ui/icons/Stars";
-import styles from "./MovieDetails.module.css";
-import Loader from '../../components/Loader/Loader'
+import Loader from "../../components/Loader/Loader";
+import { getMovieById } from "../../service/services";
 import { getImgUrl } from "../../helper/utils";
+import styles from "./MovieDetails.module.css";
 
-export default function MovieDetails() {
+export default function MovieDetails(props) {
   const [movieDetail, setMovieDetail] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +18,6 @@ export default function MovieDetails() {
       setLoading(false);
     });
   }, [id]);
-  // console.log(movieDetail)
 
   return loading ? (
     <div className={styles.backgroundLoading}>
